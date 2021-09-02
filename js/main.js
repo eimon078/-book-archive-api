@@ -10,9 +10,9 @@ const loadData = () => {
     const search_text = document.getElementById('search-field');
     const searchValue = search_text.value;
     search_text.value = '';
-    console.log(searchValue);
     if (searchValue === '') {
-        alert('Please Enter a Book Name');
+        const noResult = document.getElementById('no-result-field');
+        noResult.innerHTML = `<h2 class="text-center text-danger fs-3 ">Please, Enter Book Name.Don't Keep it Blank</h2>`
     }
 
     else {
@@ -27,9 +27,7 @@ const loadData = () => {
 
 // Display Load Data 
 const displayData = (books) => {
-    console.log(books)
-    console.log(books.num_found)
-    console.log(books.docs)
+    // get total field 
     const totalFound = document.getElementById('total-found');
     totalFound.innerHTML = `Total Found Result: <span class="text-danger">${books.num_found}</span>`;
 
@@ -69,7 +67,6 @@ const showSingleBook = (book) => {
     //Card Body
     const cardBodyDiv = document.createElement('div');
     cardBodyDiv.classList.add('card-body');
-    console.log(book.title);
 
     // Check Book Name Have or Not 
     if (book.title) {
@@ -110,8 +107,6 @@ const showSingleBook = (book) => {
     }
 
     // Check Published Year Have or Not 
-
-    console.log(book.first_publish_year);
     if (book.first_publish_year) {
         p = pTag();
         p.innerHTML = `<span class="fw-bold">First Published:</span>${book.first_publish_year}`;
@@ -129,7 +124,7 @@ const showSingleBook = (book) => {
 
 }
 
-
+// create a p tag 
 const pTag = () => {
     const p = document.createElement('p');
     p.classList.add('card-title');
